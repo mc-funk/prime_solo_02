@@ -20,7 +20,7 @@ for(var i = 0; i < array.length; i++){
 	var newerArray = []
   newerArray[i] = calculateSTI(array[i]);
  	newEl = document.createElement('li'); //create a bullet point
-	newText = document.createTextNode(newerArray[i]); //[array] was sending the entire array of arrays to the function.
+	newText = document.createTextNode(newerArray[i]); //Bug 1: [array] was sending the entire array of arrays to the function.
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }
@@ -41,7 +41,7 @@ function calculateSTI(array){
 
   newArray[1] = bonus;
   newArray[2] = Math.round(baseSalary * (1.0 + bonus));//Not technically a bug but makes no sense to display salary as a float
-  newArray[3] = Math.round(baseSalary * bonus);//Column 4, bonus in money should be rounded to nearest dollar
+  newArray[3] = Math.round(baseSalary * bonus);//Bug 2: Column 4, bonus in dollars, should be rounded to nearest dollar
   console.log(newArray[0],  + "base + sti: " + newArray[1], "money bonus" + newArray[2],  "Total income" + newArray[3]);
   console.log("Testing math.round - 100.04:", Math.round(100.4), "Testing math.round - array[3]", newArray[3], Math.round(newArray[3]) );
   return newArray;
@@ -66,7 +66,7 @@ function getBaseSTI(reviewScore){
       basePercent = 0.10;
       break;
   }
-  return basePercent; //returning basePercent - 1 does not yield the appropriate base percent
+  return basePercent; //Bug 3: returning basePercent - 1 does not yield the appropriate base percent
 }
 
 function getYearAdjustment(employeeNumber){
